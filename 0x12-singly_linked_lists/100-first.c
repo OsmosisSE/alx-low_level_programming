@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+void premain(void) __attribute__ ((constructor));
+
 /**
  * premain - prints a sentence before the main.
  * function is executed.
