@@ -6,18 +6,18 @@
  *
  * Description: Sets the head to NULL.
  */
-void free_listints2(listint_t **head)
+void free_listint2(listint_t **head)
 {
-	listint_t *temp;
+	listint_t *temp, *c;
 
-	if (head == NULL)
-		return;
+	c = *head;
 
-	while (*head)
+
+	while (c != NULL)
 	{
-		temp = (*head)->next;
-		free(*head);
-		*head = temp;
+		temp = c;
+		c = c->next;
+		free(temp);
 	}
 
 	*head = NULL;
