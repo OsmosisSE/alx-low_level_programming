@@ -8,22 +8,31 @@
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t count = 0;
+	const listint_t *temp_n = NULL;
+	const listint_t *l_n = NULL;
+	size_t counter = 0;
+	size_t new_nd;
 
-	while (head != NULL)
+	temp_n = head;
+	while (temp_n)
 	{
-		printf("[%p] %d\n", (void *)head, head->n);
-
-		count++;
-
-		if (head >= head->next)
+		printf("[%p] %d\n", (void *)temp_n, temp_n->n);
+		counter++;
+		temp_n = temp_n->next;
+		l_n = head;
+		new_nd = 0;
+		while (new_nd < counter)
 		{
-			fprintf(stderr, "Error: Bad loop detected\n");
-			exit(98);
+			if (temp_n == l_n)
+			{
+				printf("[%p] %d\n", (void *)temp_n, temp_n->n);
+				return (counter);
+			}
+			l_n = l_n->next;
+			new_nd++;
 		}
-
-		head = head->next;
+		if (!head)
+			exit(98);
 	}
-
-	return (count);
+	return (counter);
 }
